@@ -18,9 +18,11 @@ public class TestList {
 
   @Before
   public void setUp() throws Exception {
-    list = new ArrayList<Integer>();
-    // newList = new LinkedList<Integer>();
+//    list = new ArrayList<Integer>();
+    list = new LinkedList<Integer>();
     // TODO  - DONE - also try with a LinkedList - does it make any difference?
+    // Answer = "No, all tests are still passing in both TestIterator and TestList
+    //          whether it's an ArrayList or a LinkedList
   }
 
   @After
@@ -57,7 +59,6 @@ public class TestList {
     list.add(77);
     assertTrue(list.contains(77));
 
-    // fail("Not yet implemented"); // remove this line when done
   }
 
   @Test
@@ -225,7 +226,7 @@ public class TestList {
     list.add(55);
     list.add(77);
     list.add(66);
-    // TODO fix the arguments in the subList method so that the assertion
+    // TODO - DONE - fix the arguments in the subList method so that the assertion
     // passes
 
 

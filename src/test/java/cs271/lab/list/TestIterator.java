@@ -21,9 +21,11 @@ public class TestIterator {
 
   @Before
   public void setUp() throws Exception {
-    list = new ArrayList<Integer>();
-    // newList = new LinkedList<Integer>();
-    // TODO - DONE - also try with a LinkedList - does it make any difference? - DONE
+    // list = new ArrayList<Integer>();
+    list = new LinkedList<Integer>();
+    // TODO - DONE - also try with a LinkedList - does it make any difference?
+    // Answer = "No, all tests are still passing in both TestIterator and TestList
+    //          whether it's an ArrayList or a LinkedList
   }
 
   @After
@@ -74,26 +76,32 @@ public class TestIterator {
     list.add(55);
     list.add(77);
     list.add(66);
-    final var i = list.iterator();
+    Iterator<Integer> i = list.iterator();
 
-
-    List<Integer> removeList = new ArrayList<>();
-    for (Integer num : list) {
-      if (num == 77) {
-        removeList.add(num);
-      }
-    }
-    list.removeAll(removeList);
-
-//    list.removeIf(num -> num.equals(77)); // <--  Also works properly
+//    This is the one I had the most trouble with!!
 //
-//    while (i.hasNext()) {
-//      if (i.next() == 77) {
-//        // i.remove();
-//        list.remove(i.next()); // <-- I'm doing something wrong with while loop, went with enhanced for loop instead
-//        // TODO  - DONE - what happens if you use list.remove(Integer.valueOf(77))?
+//    Solution #1: Enhanced For loop to create a new list of items to remove from list
+//    List<Integer> removeList = new ArrayList<>();
+//    for (Integer num : list) {
+//      if (num == 77) {
+//        removeList.add(num);
 //      }
 //    }
+//    list.removeAll(removeList);
+
+//    # Solution #2: Use .removeIf() method from the Collections library w/ lambda expression (thanks StackOverflow)
+//    list.removeIf(num -> num.equals(77)); // <--  Also works properly
+//
+//  Solution #3:
+    while (i.hasNext()) {
+      if (i.next() == 77) {
+        // i.remove();
+        i.remove();
+        // TODO  - DONE - what happens if you use list.remove(Integer.valueOf(77))?
+        // Answer: The test fails. I think it's because since i is already iterating through the list, directly calling
+        // .remove() on the list object gives it no reference to what index i is currently on, so we instead need to call .remove() on i.
+      }
+    }
 
     assertEquals(List.of(33, 44, 55, 66), list);
     // TODO  - DONE - using assertEquals and List.of, express which values are left in the list
