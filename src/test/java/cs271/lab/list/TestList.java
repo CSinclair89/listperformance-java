@@ -18,11 +18,29 @@ public class TestList {
 
   @Before
   public void setUp() throws Exception {
-//    list = new ArrayList<Integer>();
-    list = new LinkedList<Integer>();
+    list = new ArrayList<Integer>();
+//    list = new LinkedList<Integer>();
     // TODO  - DONE - also try with a LinkedList - does it make any difference?
-    // Answer = "No, all tests are still passing in both TestIterator and TestList
-    //          whether it's an ArrayList or a LinkedList
+//    It looks like ArrayListAccess was running
+//    significant shorter than LinkedListAccess by
+//    an order of 2,103%. However, ArrayListAddRemove
+//    was running significantly longer than
+//    LinkedListAddRemove by an order of 521%.
+//
+//    Behaviorally, the reason for this is because
+//    for ArrayListAccess, the elements are stored to indices
+//    which makes it very efficient to find them. In a
+//    linked list, the elements are represented by a node
+//    that contains a reference to the element and a
+//    reference to the next node in the list, which makes it
+//    inefficient for simply accessing data.
+//
+//    However when manipulating data, such as with
+//    ArrayListAddRemove, we're required to create a
+//    new array that either inserts or removes the new
+//    element. With LinkedListAddRemove, we can just
+//    iterate through until we find the intended value
+//    and then just reassign the node pointer.
   }
 
   @After

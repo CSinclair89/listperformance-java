@@ -9,18 +9,18 @@ import org.junit.Test;
 
 public class TestPerformance {
 
-  // TODO run test and record running times for SIZE = 10, 100, 1000, 10000, ...
+  // TODO - DONE - run test and record running times for SIZE = 10, 100, 1000, 10000, ...
   // (choose in conjunction with REPS below up to an upper limit where the clock
   // running time is in the tens of seconds)
   // TODO (optional) refactor to DRY
   // which of the two lists performs better as the size increases?
   // Answer: ArrayList Access was significantly shorter than LinkedList Access by an order of 2,103%
   // Answer: ArrayList Add/Remove was significantly longer than LinkedList Add/Remove by an order of 521%
-  private final int SIZE = 100000;
+  private final int SIZE = 1000;
 
-  // TODO choose this value in such a way that you can observe an actual effect
+  // TODO - DONE - choose this value in such a way that you can observe an actual effect
   // for increasing problem sizes
-  private final int REPS = 1000000;
+  private final int REPS = 1000;
 
   private List<Integer> arrayList;
 
